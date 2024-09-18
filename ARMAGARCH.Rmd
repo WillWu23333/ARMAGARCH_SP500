@@ -121,7 +121,7 @@ where $P_t$ is the S&P 500 index at time t.
 ## 2.2 Data plots and exploratory analysis
 
 ```{r, include=T, echo=F}
-ggplot(data=SP500, aes(x=index(SP500), y=SP)) + geom_line(color="springgreen4") +
+ggplot(data=SP500, aes(x=index(SP500), y=SP)) + geom_line(color="green4") +
 labs(x="", y="", title="S&P 500 Index, Daily Close") +
 theme_minimal() + theme(plot.title = element_text(size=10)) +
 scale_x_date(date_breaks="2 years", date_labels = "%Y")
@@ -236,7 +236,8 @@ represents the Gaussian (normal) distribution calculated with sample mean and
 standard deviation. It shows how the data would fit if the distribution is 
 normal.
 
-```{r}
+```{r, fig.width=6, fig.height=7}
+par(mfrow=c(2,1))  # 2 rows, 2 col
 # rm(fit)
 vec1 <- as.vector(SP500_r)
 fit <- MASS::fitdistr(vec1, "normal")
@@ -250,6 +251,7 @@ graphics::hist(vec1, prob = TRUE, breaks=500, ylim = c(0, 0.2), xlim=c(-5,-1), c
 cex.main=0.8, main="Detail on the Left Tail (-5% return) ", xlab='')
 graphics::curve(dnorm(x, para[1], para[2]), col = 2, add = TRUE)
 ```
+
 *Figure 4. Histogram of S&P500 Returns*
 
 \newpage
